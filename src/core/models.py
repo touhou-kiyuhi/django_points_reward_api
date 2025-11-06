@@ -5,6 +5,29 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 
+class Profile(models.Model):
+    """Extends the built-in User model to include points and merchant flag."""
+
+    # Fields
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    points = models.PositiveIntegerField(default=0, help_text='Current points available for the user.')
+    is_merchant = models.BooleanField(default=False, help_text='Designates whether the user is a merchant.')
+
+    # Metadata
+    class Meta:
+        verbose_name = "Profile"
+        verbose_name_plural = "Profiles"
+
+    # Methods
+    def __str__(self):
+        """String for representing the Profile object (e.g., in the admin interface)."""
+        return f"{self.user.username} - {'Merchant' if self.is_merchant else 'Member'}"
+
+    def get_absolute_url(self):
+        """Returns the URL to access this user's profile detail."""
+        return reverse('profile')
+
+
 class Product(models.Model):
     """Represents a redeemable product listed by a merchant."""
 

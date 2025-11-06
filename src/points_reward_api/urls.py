@@ -18,9 +18,13 @@ from django.contrib import admin
 from django.urls import path
 
 from core.views.api.product_api_view import ProductListCreateView, ProductRetrieveUpdateDestroyView
+from core.views.api.userProfile_api_view import UserListCreateView, UserRetrieveUpdateDestroyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Profile URLs
+    path('api/users/', UserListCreateView.as_view(), name='api-user-list-create'),
+    path('api/users/<int:pk>/', UserRetrieveUpdateDestroyView.as_view(), name='api-user-detail'),
     # Product URLs
     path('api/products/', ProductListCreateView.as_view(), name='api-product-list'),
     path('api/products/<int:pk>/', ProductRetrieveUpdateDestroyView.as_view(), name='api-product-detail'),
