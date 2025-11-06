@@ -17,6 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from core.views.api.product_api_view import ProductListCreateView, ProductRetrieveUpdateDestroyView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Product URLs
+    path('api/products/', ProductListCreateView.as_view(), name='api-product-list'),
+    path('api/products/<int:pk>/', ProductRetrieveUpdateDestroyView.as_view(), name='api-product-detail'),
 ]

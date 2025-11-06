@@ -19,3 +19,14 @@ cd src
 python manage.py migrate
 python manage.py runserver
 ```
+```shell
+python manage.py createsuperuser
+```
+## 功能新增
+```shell
+python manage.py startapp core
+```
+```shell
+python manage.py makemigrations
+python manage.py migrate
+```
